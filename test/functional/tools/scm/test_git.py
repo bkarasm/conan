@@ -504,6 +504,7 @@ class TestGitShallowClone:
         c.run("source .")
         assert f'conanfile.py (pkg/0.1): RUN: git remote add origin "{url}"' in c.out
 
+    @pytest.mark.skipif(platform.system() == "Linux", reason="Git version in Linux not support it")
     def test_clone_to_subfolder(self):
         conanfile = textwrap.dedent("""
             import os
